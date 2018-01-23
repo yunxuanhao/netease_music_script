@@ -55,4 +55,11 @@ printf(PHP_EOL."最佳匹配：在%s匹配到《%s》- %s/%s，相似度 %d%%\n"
 $api->site($best_suppose);
 $url = $api->url($ans['url_id']);
 $url = json_decode($url,true);
-exec('curl -o download/'.str_replace(' ', '', $ans['name']).'.mp3 "'.$url['url'].'"');
+
+$path = 'download';
+if(!file_exists($path)) {
+    mkdir($path);
+}
+exec("curl -o {$path}/".str_replace(' ', '', $ans['name']).'.mp3 "'.$url['url'].'"');
+
+

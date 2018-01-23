@@ -14,7 +14,9 @@ composer install
 
 ## 使用方法
 
-php run.php {网易云song-id}
+php run.php {网易云song-id} 
+
+之后就会匹配到最合适的音乐文件，下载到download目录下
 
 ```
 $ php run.php 22833991
