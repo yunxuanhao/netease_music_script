@@ -14,10 +14,10 @@ composer install
 
 ## 使用方法
 
-php get_music.php {网易云song-id}
+php run.php {网易云song-id}
 
 ```
-$ php get_music.php 22833991
+$ php run.php 22833991
 
 已找到歌曲《기억을 걷는 시간》- Nell  所属专辑《Separation Anxiety》
 
