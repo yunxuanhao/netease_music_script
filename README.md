@@ -1,4 +1,4 @@
-# music_script
+# netease_music_script
 
 从其它渠道下载网易云音乐下架的歌曲。
 该脚本参考了[@metowolf](https://github.com/metowolf)的脚本，并且使用了他的[Meting](https://github.com/metowolf/Meting)，在此表示感谢 
