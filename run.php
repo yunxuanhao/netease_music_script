@@ -46,7 +46,7 @@ foreach ($suppose_list as $suppose => $suppose_name) {
         if($per > $best){
             $url = json_decode($api->url($vo['url_id']),true);
             if(!empty($url['url'])) {
-                sleep(1);
+                usleep(50000);
                 $best = $per;
                 $ans = $vo;
                 $best_url = $url['url'];
@@ -63,6 +63,6 @@ $path = 'download';
 if(!file_exists($path)) {
     mkdir($path);
 }
-exec("curl -o {$path}/".str_replace(' ', '', $ans['name']).'.mp3 "'.$url['url'].'"');
+exec("curl -o {$path}/".str_replace(' ', '', $ans['name']).'.mp3 "'.$best_url.'"');
 
 
