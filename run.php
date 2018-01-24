@@ -63,6 +63,6 @@ $path = 'download';
 if(!file_exists($path)) {
     mkdir($path);
 }
-exec("curl -o {$path}/".str_replace(' ', '', $ans['name']).'.mp3 "'.$best_url.'"');
 
-
+exec('curl -o '.'"'.$path.'/'.$ans['name'].'.mp3" "'.$best_url.'"');
+echo "下载完毕，请到{$path}文件夹下查看，文件名为  {$ans['name']}.mp3".PHP_EOL;
