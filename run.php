@@ -29,6 +29,7 @@ $suppose_list = array(
     'baidu' => '百度音乐',
 );
 $best = 0;
+$best_url = '';
 foreach ($suppose_list as $suppose => $suppose_name) {
     $api->site($suppose);
     printf(PHP_EOL."正在%s搜索".PHP_EOL,$suppose_name);
@@ -43,18 +44,20 @@ foreach ($suppose_list as $suppose => $suppose_name) {
         $tb = $vo['name'].$vo['album'].$vo['artist'][0];
         similar_text($ta,$tb,$per);
         if($per > $best){
-            $best = $per;
-            $best_suppose = $suppose;
-            $ans = $vo;
+            $url = json_decode($api->url($vo['url_id']),true);
+            if(!empty($url['url'])) {
+                sleep(1);
+                $best = $per;
+                $ans = $vo;
+                $best_url = $url['url'];
+            }
         }
-
     }
 }
-
-printf(PHP_EOL."最佳匹配：在%s匹配到《%s》- %s/%s，相似度 %d%%\n",$suppose_list[$best_suppose],$ans['name'],$ans['artist'][0],$ans['album'],$best);
-$api->site($best_suppose);
-$url = $api->url($ans['url_id']);
-$url = json_decode($url,true);
+if(empty($best)) {
+    exit('未找到最佳匹配的歌曲'.PHP_EOL);
+}
+printf(PHP_EOL."最佳匹配：在%s匹配到《%s》- %s/%s，相似度 %d%%\n",$suppose_list[$ans['source']],$ans['name'],$ans['artist'][0],$ans['album'],$best);
 
 $path = 'download';
 if(!file_exists($path)) {
